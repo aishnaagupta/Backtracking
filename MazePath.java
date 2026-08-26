@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class MazePath {
     public static void main(String[] args) {
         // path("", 3, 3);
-        System.out.println(path2("", 3, 3));
+        System.out.println(path3("", 3, 3));
     }
 
     static void path(String s, int r, int c) {
@@ -33,6 +33,26 @@ public class MazePath {
         }
         if (c > 1) {
             list.addAll(path2(s + 'R', r, c - 1));
+        }
+        return list;
+    }
+
+    static ArrayList<String> path3(String s, int r, int c) {
+        if (r == 1 && c == 1) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(s);
+            return list;
+        }
+
+        ArrayList<String> list = new ArrayList<>();
+        if (r > 1 && c > 1) {
+            list.addAll(path3(s + 'd', r - 1, c - 1));
+        }
+        if (r > 1) {
+            list.addAll(path3(s + 'D', r - 1, c));
+        }
+        if (c > 1) {
+            list.addAll(path3(s + 'R', r, c - 1));
         }
         return list;
     }
